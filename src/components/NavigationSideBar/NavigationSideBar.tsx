@@ -7,6 +7,7 @@ import {
   ListItemText,
   Stack,
   Toolbar,
+  Typography,
 } from "@mui/material";
 import React from "react";
 import { ROUTES } from "../../config/Router/routes";
@@ -38,23 +39,24 @@ const NavigationSideBar = () => {
   const currentLocation = useLocation();
 
   return (
-    <Box className="bg-overlay h-screen flex-col w-48">
+    <Box className="bg-gray-800 h-screen flex-col w-64">
       <Link
         to={ROUTES.DASHBOARD}
         key="Icon"
         className="flex justify-center mb-12 mt-8"
       >
-        <ListItemIcon>
-          <img src="logo192.png" alt="logo" className="w-24" />
-        </ListItemIcon>
+        <span className="text-7xl">📂</span>
       </Link>
 
       <Stack spacing={2} className="flex-col items-start">
         {sideBarItems.map((item) => (
           <Link
-            className={clsx("w-full", {
-              "bg-primary": currentLocation.pathname === item.route,
-            })}
+            className={clsx(
+              "w-full hover:bg-primary hover:bg-opacity-30 transform transition-all duration-300",
+              {
+                "bg-primary": currentLocation.pathname === item.route,
+              }
+            )}
             to={item.route}
             key={item.text}
           >

@@ -1,13 +1,11 @@
 import { Box } from "@mui/material";
 import React from "react";
+import AddFlashCard from "../components/AddFlashCard/AddFlashCard";
 
 const CreateStudyCardsPage = () => {
-
   return (
     <>
-    
-      <Box>This is where you create study card</Box>
-    
+      <AddFlashCard />
     </>
   );
 };
