@@ -15,10 +15,7 @@ const cards: Card[] = [
 const StudyCardsPage = () => {
   return (
     <>
-      <h1>This is where all user created study card sets live</h1>
-      {cards.map((card: Card) => (
-        <StudyCard title={card.title} description={card.description} />
-      ))}
+      <div>hello</div>
     </>
   );
 };
