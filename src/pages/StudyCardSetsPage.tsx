@@ -38,6 +38,7 @@ const StudyCardsPage = () => {
                   date={card.date}
                   id={card.id}
                   icon={card.icon}
+                  progress={card.progress}
                 />
               ))}
             </div>

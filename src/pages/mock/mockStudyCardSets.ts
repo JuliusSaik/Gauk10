@@ -7,6 +7,7 @@ export const cards: CardSet[] = [
     title: "Kompiuterinė grafika",
     description: "Egzaminas",
     date: "2024-10-10",
+    progress: 27,
   },
   {
     id: "programavimas",
@@ -14,6 +15,7 @@ export const cards: CardSet[] = [
     title: "Programavimas",
     description: "Projektas",
     date: "2024-10-10",
+    progress: 87,
   },
   {
     id: "diskrecioji",
@@ -21,6 +23,7 @@ export const cards: CardSet[] = [
     title: "Diskrečioji",
     description: "Kolis",
     date: "2024-10-10",
+    progress: 36,
   },
   {
     id: "diskrecioji",
@@ -28,5 +31,6 @@ export const cards: CardSet[] = [
     title: "Diskrečioji",
     description: "Kolis",
     date: "2024-10-10",
+    progress: 78,
   },
 ];
