@@ -16,7 +16,7 @@ This creates a new branch for you to work on and make changes
 
 Adds all of the changed files into the staging area where you can then commit
 
-### `git commit -m "message describing changes"
+### `git commit -m "message describing changes"`
 
 Commit your changes on the local branch
 
