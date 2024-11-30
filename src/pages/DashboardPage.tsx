@@ -5,7 +5,7 @@ import { Box } from "@mui/material";
 const DashboardPage = () => {
   return (
     <>
-      <Box className="max-w-full">
+      <Box className="max-w-full rounded-lg">
         <ReviewProgress />
       </Box>
     </>
