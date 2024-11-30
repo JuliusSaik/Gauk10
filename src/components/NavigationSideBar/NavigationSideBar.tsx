@@ -39,13 +39,13 @@ const NavigationSideBar = () => {
   const currentLocation = useLocation();
 
   return (
-    <Box className="bg-gray-800 h-screen flex-col w-64">
+    <Box className="bg-gray-800 min-h-full overflow-y-scroll flex-col w-64">
       <Link
         to={ROUTES.DASHBOARD}
         key="Icon"
         className="flex justify-center mb-12 mt-8"
       >
-        <span className="text-7xl">📂</span>
+        <img src="gauk10_logo.svg" alt="logo" />
       </Link>
 
       <Stack spacing={2} className="flex-col items-start">

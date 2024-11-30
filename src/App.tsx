@@ -20,8 +20,11 @@ const AppContent: React.FC = () => {
 
   return (
     <Box className="flex h-screen">
-      <NavigationSideBar />
-      <Box component="main" className="p-8">
+      <Box className="overflow-y-hidden overflow-x-clip">
+        <NavigationSideBar />
+      </Box>
+
+      <Box component="main" className="p-8 overflow-y-scroll overflow-x-clip">
         <Box>{routes}</Box>
       </Box>
     </Box>

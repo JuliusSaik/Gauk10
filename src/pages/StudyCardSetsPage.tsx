@@ -29,7 +29,7 @@ const StudyCardsPage = () => {
               </button>
             </Box>
 
-            <div className="flex gap-10 flex-col md:flex-row">
+            <div className="grid gap-12 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
               {cards.map((card: CardSet) => (
                 <StudyCardSet
                   key={card.id}
@@ -38,6 +38,7 @@ const StudyCardsPage = () => {
                   date={card.date}
                   id={card.id}
                   icon={card.icon}
+                  progress={card.progress}
                 />
               ))}
             </div>

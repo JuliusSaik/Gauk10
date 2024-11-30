@@ -6,6 +6,7 @@ export interface CardSet {
   title: string;
   description: string;
   date: string;
+  progress: number;
 }
 
 const StudyCardSet: React.FC<CardSet> = ({
