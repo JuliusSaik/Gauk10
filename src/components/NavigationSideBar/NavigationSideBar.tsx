@@ -39,7 +39,7 @@ const NavigationSideBar = () => {
   const currentLocation = useLocation();
 
   return (
-    <Box className="bg-gray-800 min-h-full overflow-y-scroll flex-col w-64">
+    <Box className="bg-gray-800 min-h-full overflow-y-hidden flex-col w-64">
       <Link
         to={ROUTES.DASHBOARD}
         key="Icon"

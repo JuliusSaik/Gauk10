@@ -6,17 +6,21 @@ import reportWebVitals from "./reportWebVitals";
 import { StyledEngineProvider } from "@mui/styled-engine-sc";
 import { globalTheme } from "./config/mui-themes";
 import { ThemeProvider } from "@mui/material";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <StyledEngineProvider injectFirst>
-      <ThemeProvider theme={globalTheme}>
-        <App />
-      </ThemeProvider>
-    </StyledEngineProvider>
+    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en-gb">
+      <StyledEngineProvider injectFirst>
+        <ThemeProvider theme={globalTheme}>
+          <App />
+        </ThemeProvider>
+      </StyledEngineProvider>
+    </LocalizationProvider>
   </React.StrictMode>
 );
 
