@@ -15,5 +15,6 @@ const EventsSideCard = () => {
     </div>
   );
 };
+console.log("Hello world");
 
 export default EventsSideCard;
