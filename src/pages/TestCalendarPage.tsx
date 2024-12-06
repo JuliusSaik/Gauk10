@@ -2,6 +2,7 @@ import React from "react";
 import CalendarBlock from "../components/Calendar/Calendar";
 import { Navigate, useNavigate } from "react-router-dom";
 import { Box, Button } from "@mui/material";
+import EventsSideCard from "../components/EventsSideCard/EventsSideCard";
 
 const TestCalendarPage = () => {
   return (
@@ -28,7 +29,9 @@ const TestCalendarPage = () => {
           </section>
         </div>
 
-        <div className="bg-red-700 h-3/4 w-96 mr-10">hello</div>
+        <div className="bg-gray-800 flex flex-col items-center w-96 text-white rounded-lg">
+          <EventsSideCard />
+        </div>
       </div>
     </>
   );
