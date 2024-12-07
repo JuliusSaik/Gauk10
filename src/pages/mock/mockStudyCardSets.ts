@@ -1,8 +1,8 @@
-import { CardSet } from "../../components/StudyCardSet/StudyCardSet";
+import { FlashCardSet } from "../../config/types";
 
-export const cards: CardSet[] = [
+export const cards: FlashCardSet[] = [
   {
-    id: "kompiuterine-grafika",
+    id: 0,
     icon: 0,
     title: "Kompiuterinė grafika",
     description: "Egzaminas",
@@ -10,7 +10,7 @@ export const cards: CardSet[] = [
     progress: 68,
   },
   {
-    id: "programavimas",
+    id: 1,
     icon: 1,
     title: "Programavimas",
     description: "Projektas",
@@ -18,7 +18,7 @@ export const cards: CardSet[] = [
     progress: 87,
   },
   {
-    id: "diskrecioji",
+    id: 2,
     icon: 2,
     title: "Diskrečioji",
     description: "Kolis",
@@ -26,7 +26,7 @@ export const cards: CardSet[] = [
     progress: 36,
   },
   {
-    id: "diskrecioji",
+    id: 3,
     icon: 3,
     title: "Diskrečioji",
     description: "Kolis",

@@ -1,9 +1,10 @@
 import React from "react";
 import StudyCard, { Card } from "../components/StudyCard/StudyCard";
-import StudyCardSet, { CardSet } from "../components/StudyCardSet/StudyCardSet";
+import StudyCardSet from "../components/StudyCardSet/StudyCardSet";
 import { cards } from "./mock/mockStudyCardSets";
 import { Box, Button } from "@mui/material";
 import { Navigate, useNavigate } from "react-router-dom";
+import { FlashCardSet } from "../config/types";
 
 const StudyCardsPage = () => {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ const StudyCardsPage = () => {
           <div className="w-full px-[2.5rem]">
             <Box className="flex justify-between items-center mb-10">
               <Box>
-                <h1 className="mt-10 mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+                <h1 className="mt-10 mb-4 text-4xl font-extrabold leading-none tracking-tight text-white md:text-5xl lg:text-6xl dark:text-white">
                   Your {}
                   <span className="text-blue-600 dark:text-blue-500">
                     Studycards 📂
@@ -31,7 +32,7 @@ const StudyCardsPage = () => {
             </Box>
 
             <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 w-full">
-              {cards.map((card: CardSet) => (
+              {cards.map((card: FlashCardSet) => (
                 <StudyCardSet
                   key={card.id}
                   title={card.title}

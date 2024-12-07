@@ -1,8 +1,8 @@
 import { Box, LinearProgress, Typography } from "@mui/material";
 import React from "react";
 import { cards } from "../../pages/mock/mockStudyCardSets";
-import { CardSet } from "../StudyCardSet/StudyCardSet";
 import { ClassNames } from "@emotion/react";
+import { FlashCardSet } from "../../config/types";
 
 const ReviewMaterial: React.FC<{ progress?: number }> = ({ progress = 0 }) => {
   return (
@@ -42,7 +42,7 @@ const ReviewProgress = () => {
     <Box sx={{ width: "100%" }} className="bg-gray-800 p-4 w-full rounded-lg">
       <h1 className="text-2xl pr-32 pb-8">Review Progress</h1>
       <div>
-        {cards.map((card: CardSet) => {
+        {cards.map((card: FlashCardSet) => {
           const daysLeft = calculateDaysLeft(card.date); // Use the helper function
           return (
             <div key={card.id} className="pb-8">

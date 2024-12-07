@@ -1,16 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { iconsList } from "../../pages/mock/IconsSet";
+import { FlashCardSet } from "../../config/types";
 
-export interface CardSet {
-  id: string;
-  icon: number;
-  title: string;
-  description: string;
-  date: string;
-  progress: number;
-}
-
-const StudyCardSet: React.FC<CardSet> = ({
+const StudyCardSet: React.FC<FlashCardSet> = ({
   title,
   description,
   date,

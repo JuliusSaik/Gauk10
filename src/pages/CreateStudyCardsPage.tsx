@@ -1,14 +1,10 @@
-import { Box, Button, TextField, Typography } from "@mui/material";
+import { Box, Button, TextField, Fade, Typography } from "@mui/material";
 import React, { useState } from "react";
 import AddFlashCard from "../components/AddFlashCard/AddFlashCard";
 import { DatePicker } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
-
-export interface QACard {
-  id: number;
-  question: string;
-  answer: string;
-}
+import { API_BASE_URL } from "../config/constants";
+import { CreateFlashCardSet, QACard } from "../config/types";
 
 const firstCard: QACard = {
   id: 0,
@@ -17,8 +13,15 @@ const firstCard: QACard = {
 };
 
 const CreateStudyCardsPage = () => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [inputTitle, setInputTitle] = useState("");
+  const [inputDescription, setInputDescription] = useState("");
+  const [deletingId, setDeletingId] = useState<number | null>(null);
+
+  const firstCard: QACard = {
+    id: 0,
+    question: "",
+    answer: "",
+  };
 
   const [createdCards, setCreatedCards] = useState<QACard[]>([firstCard]);
   const [creationId, setCreationId] = useState(0);
@@ -45,51 +48,93 @@ const CreateStudyCardsPage = () => {
   };
 
   const handleDelete = (id: number) => {
-    const deleteIndex = createdCards.findIndex((card) => card.id === id);
-    createdCards.splice(deleteIndex, 1);
-    const copyOfCards = [...createdCards];
-    setCreatedCards(copyOfCards);
+    setDeletingId(id);
+
+    setTimeout(() => {
+      const deleteIndex = createdCards.findIndex((card) => card.id === id);
+      createdCards.splice(deleteIndex, 1);
+      const copyOfCards = [...createdCards];
+      setCreatedCards(copyOfCards);
+      setDeletingId(null);
+    }, 200);
   };
 
   const [selectedDate, setSelectedDate] = useState(dayjs()); // Default to current date (Rafal)
 
-  const onSubmitCards = () => {
-    console.log("Selected Date:", selectedDate.format("YYYY-MM-DD")); // Rafal
-    console.log(createdCards);
+  const onSubmitCards = async () => {
+    try {
+      const createFlashCardSet: CreateFlashCardSet = {
+        title: inputTitle,
+        description: inputDescription,
+        progress: 0,
+        date: "2024-11-10",
+      };
+
+      const response = await fetch(`${API_BASE_URL}/sets`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(createFlashCardSet),
+      });
+
+      const data = await response.json();
+      console.log("Post successful:", data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <>
-      <Box className="flex justify-center items-start min-h-screen bg-gray-900">
-        <Box className="w-full bg-gray-800 text-white p-8 rounded-lg shadow-lg">
-          <Typography
-            variant="h4"
-            className="mb-8 font-semibold text-white text-center"
+      <Box className="pb-6">
+        <Box className="justify-between items-center flex mx-auto">
+          <h1 className="mt-10 mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+            <span className="text-white">Create {}</span>
+            <span className="text-blue-600 dark:text-blue-500">
+              flashcard set 📂
+            </span>
+          </h1>
+          <button
+            className="mt-4 mr-4 px-10 py-2 h-14 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-500 transform transition-all duration-300 hover:scale-105"
+            onClick={onSubmitCards}
           >
-            Create a new flashcard set
-          </Typography>
-
-          <Box className="flex-col space-y-12">
+            Create Set
+          </button>
+        </Box>
+      </Box>
+      <Box className="w-full mx-auto p-2 place-items-center">
+        <Box className="flex-col w-4/5 justify-center border-1 border-blue-300 items-center bg-gray-800 text-white p-8 rounded-lg shadow-lg">
+          <Box className="mt-2 flex-col space-y-12 text-white">
             {/* Title Input */}
             <TextField
-              placeholder="Enter a title, like 'Programming - Chapter 22: Dynamic memory allocation"
+              sx={{
+                "& .MuiOutlinedInput-input": {
+                  color: "white",
+                },
+              }}
+              placeholder="Enter a title e.g: 'Programming - Chapter 22: Dynamic memory allocation'"
               variant="outlined"
               fullWidth
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              className="mb-8 bg-gray-100 text-black"
+              value={inputTitle}
+              onChange={(e) => setInputTitle(e.target.value)}
+              className="mb-8 bg-gray-700 rounded-md outline-none"
             />
 
             {/* Description Input */}
             <TextField
+              sx={{
+                "& .MuiOutlinedInput-input": {
+                  color: "white",
+                },
+              }}
               placeholder="Add a description..."
-              variant="outlined"
               fullWidth
               multiline
               rows={4}
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              className="mb-8 bg-gray-100 text-black"
+              value={inputDescription}
+              onChange={(e) => setInputDescription(e.target.value)}
+              className="mb-8 bg-gray-700  rounded-md outline-none"
             />
           </Box>
           <Box className="flex justify-between gap-4 mb-8 mt-8">
@@ -120,27 +165,28 @@ const CreateStudyCardsPage = () => {
               value={selectedDate}
               onChange={(newValue) => setSelectedDate(newValue || dayjs())} // Default to current date if null (Rafal)
             />
-
-            <Button
-              variant="contained"
-              className="bg-blue-600 hover:bg-blue-700 text-white w-1/2"
-              onClick={onSubmitCards}
-            >
-              Create and practice
-            </Button>
           </Box>
 
           <Box className="mt-12">
             {createdCards.map((qaCard) => (
-              <AddFlashCard
-                cardId={qaCard.id}
-                handleChange={handleCardChange}
-                handleDelete={handleDelete}
-              />
+              <Fade in={deletingId !== qaCard.id} timeout={400} key={qaCard.id}>
+                <Box>
+                  <AddFlashCard
+                    cardId={qaCard.id}
+                    handleChange={handleCardChange}
+                    handleDelete={handleDelete}
+                  />
+                </Box>
+              </Fade>
             ))}
-            <Button className="w-full mt-8" variant="contained" onClick={onAdd}>
-              Add a card
-            </Button>
+            <Box className="flex justify-center">
+              <button
+                className="mt-4 px-6 py-2 h-12 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-500 transform transition-all duration-300 hover:scale-105"
+                onClick={onAdd}
+              >
+                Add a card
+              </button>
+            </Box>
           </Box>
         </Box>
       </Box>

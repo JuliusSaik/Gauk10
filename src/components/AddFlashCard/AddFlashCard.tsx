@@ -1,7 +1,7 @@
-import { DeleteRounded, DragHandleRounded } from "@mui/icons-material";
-import { Box, Divider, IconButton, TextField } from "@mui/material";
+import { DeleteRounded } from "@mui/icons-material";
+import { Box, Divider, Fade, IconButton, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { QACard } from "../../pages/CreateStudyCardsPage";
+import { QACard } from "../../config/types";
 
 export interface AddFlashCardProps {
   cardId: number;
@@ -49,8 +49,8 @@ const AddFlashCard: React.FC<AddFlashCardProps> = ({
 
   return (
     <>
-      <div className="container mx-auto p-4">
-        <Box className="border border-black border-6 bg-gray-800 rounded-lg">
+      <div className="container mx-auto p-2 w-5/6">
+        <Box className="bg-gray-700 rounded-lg pb-2">
           <div className="flex object-right h-auto flex-line justify-end p-2">
             <IconButton
               aria-label="delete"
@@ -60,9 +60,9 @@ const AddFlashCard: React.FC<AddFlashCardProps> = ({
             </IconButton>
           </div>
 
-          <Divider sx={{ borderBottomWidth: 5 }} className="bg-gray-500" />
+          <Divider sx={{ borderBottomWidth: 0 }} className="bg-white" />
 
-          <div className="flex items-center space-x-4 m-4 pt-4">
+          <div className="flex items-center space-x-4 m-4">
             <div className="flex-1">
               <TextField
                 id="filled-basic"

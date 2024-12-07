@@ -24,7 +24,10 @@ const AppContent: React.FC = () => {
         <NavigationSideBar />
       </Box>
 
-      <Box component="main" className="flex-1 p-8 overflow-y-hidden">
+      <Box
+        component="main"
+        className="flex-1 p-8 overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none"
+      >
         <Box>{routes}</Box>
       </Box>
     </Box>
