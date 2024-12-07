@@ -19,12 +19,12 @@ const AppContent: React.FC = () => {
   const { routes } = Router();
 
   return (
-    <Box className="flex h-screen">
-      <Box className="overflow-y-hidden overflow-x-clip">
+    <Box className="flex h-screen ">
+      <Box className="overflow-hidden w-64 ">
         <NavigationSideBar />
       </Box>
 
-      <Box component="main" className="p-8 overflow-y-scroll overflow-x-clip">
+      <Box component="main" className="flex-1 p-8 overflow-y-hidden">
         <Box>{routes}</Box>
       </Box>
     </Box>

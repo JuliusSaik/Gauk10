@@ -13,9 +13,10 @@ const StudyCardsPage = () => {
       <div className="min-h-screen text-white flex flex-col">
         <section className="container mx-auto flex flex-col justify-between gap-2 pb-[20rem]">
           <div className="w-full px-[2.5rem]">
-            <Box className="flex justify-between items-center">
+            <Box className="flex justify-between items-center mb-10">
               <Box>
                 <h1 className="mt-10 mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+                  Your {}
                   <span className="text-blue-600 dark:text-blue-500">
                     Studycards 📂
                   </span>
@@ -29,7 +30,7 @@ const StudyCardsPage = () => {
               </button>
             </Box>
 
-            <div className="grid gap-12 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 w-full">
               {cards.map((card: CardSet) => (
                 <StudyCardSet
                   key={card.id}

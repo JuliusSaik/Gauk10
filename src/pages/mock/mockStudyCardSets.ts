@@ -3,7 +3,7 @@ import { CardSet } from "../../components/StudyCardSet/StudyCardSet";
 export const cards: CardSet[] = [
   {
     id: "kompiuterine-grafika",
-    icon: "",
+    icon: 0,
     title: "Kompiuterinė grafika",
     description: "Egzaminas",
     date: "2024-11-10",
@@ -11,7 +11,7 @@ export const cards: CardSet[] = [
   },
   {
     id: "programavimas",
-    icon: "",
+    icon: 1,
     title: "Programavimas",
     description: "Projektas",
     date: "2024-12-10",
@@ -19,7 +19,7 @@ export const cards: CardSet[] = [
   },
   {
     id: "diskrecioji",
-    icon: "",
+    icon: 2,
     title: "Diskrečioji",
     description: "Kolis",
     date: "2024-12-27",
@@ -27,7 +27,7 @@ export const cards: CardSet[] = [
   },
   {
     id: "diskrecioji",
-    icon: "",
+    icon: 3,
     title: "Diskrečioji",
     description: "Kolis",
     date: "2024-12-10",
