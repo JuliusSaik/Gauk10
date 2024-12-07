@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Card } from "./StudyCardList";
+import React, { useState } from "react";
+import { QACard } from "../../config/types";
+import "./card.css";
 
-const StudyCard: React.FC<Card> = ({ id, question, answer }) => {
+const StudyCard: React.FC<QACard> = ({ question, answer }) => {
   const [versti, sversti] = useState(false);
   const settings = {
     dots: true,

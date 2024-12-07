@@ -1,12 +1,11 @@
 import React from "react";
-import StudyCard, { Card } from "../components/StudyCard/StudyCard";
 import StudyCardSet from "../components/StudyCardSet/StudyCardSet";
 import { cards } from "./mock/mockStudyCardSets";
-import { Box, Button } from "@mui/material";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Box } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import { FlashCardSet } from "../config/types";
 
-const StudyCardsPage = () => {
+const StudyCardSetsPage = () => {
   const navigate = useNavigate();
 
   return (
@@ -51,4 +50,4 @@ const StudyCardsPage = () => {
   );
 };
 
-export default StudyCardsPage;
+export default StudyCardSetsPage;

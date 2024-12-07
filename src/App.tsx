@@ -26,7 +26,7 @@ const AppContent: React.FC = () => {
 
       <Box
         component="main"
-        className="flex-1 p-8 overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none"
+        className="flex-1 p-8 overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
       >
         <Box>{routes}</Box>
       </Box>

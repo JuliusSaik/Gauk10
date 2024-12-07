@@ -10,15 +10,12 @@ import StudyCard from "./StudyCard";
 import ReplayCircleFilledIcon from "@mui/icons-material/ReplayCircleFilled";
 import AssignmentReturnIcon from "@mui/icons-material/AssignmentReturn";
 import { useNavigate } from "react-router-dom";
-
-export interface Card {
-  id: number;
-  question: string;
-  answer: string;
-}
+import { QACard } from "../../config/types";
+import { ROUTES } from "../../config/Router/routes";
+import { Box } from "@mui/material";
 
 interface StudyCardListProps {
-  cards: Card[];
+  cards: QACard[];
 }
 
 const StudyCardList: React.FC<StudyCardListProps> = ({ cards }) => {
@@ -46,12 +43,12 @@ const StudyCardList: React.FC<StudyCardListProps> = ({ cards }) => {
     slider.current!.slickNext();
   };
   const GoBack = () => {
-    navigate(`/study-cards`);
+    navigate(`${ROUTES.ALL_STUDY_CARDS}`);
   };
   const refreshPage = () => {
     window.location.reload();
   };
-  if (Counter == cards.length) {
+  if (Counter === cards.length) {
     return (
       <div className="flex flex-col items-center justify-center absolute inset-0">
         <div
@@ -104,24 +101,26 @@ const StudyCardList: React.FC<StudyCardListProps> = ({ cards }) => {
             );
           })}
         </Slider>
-        <Stack direction="row" spacing={15} marginTop={70} marginLeft={14}>
-          <IconButton
-            aria-label="cancel"
-            sx={{ fontSize: 50 }}
-            color="warning"
-            onClick={incorrect}
-          >
-            <CancelIcon fontSize="inherit" />
-          </IconButton>
-          <IconButton
-            aria-label="check"
-            sx={{ fontSize: 50 }}
-            color="success"
-            onClick={correct}
-          >
-            <CheckCircleIcon fontSize="inherit" />
-          </IconButton>
-        </Stack>
+        <Box className="flex justify-center">
+          <Stack direction="row" spacing={15} marginTop={70} marginLeft={14}>
+            <IconButton
+              aria-label="cancel"
+              sx={{ fontSize: 50 }}
+              color="warning"
+              onClick={incorrect}
+            >
+              <CancelIcon fontSize="inherit" />
+            </IconButton>
+            <IconButton
+              aria-label="check"
+              sx={{ fontSize: 50 }}
+              color="success"
+              onClick={correct}
+            >
+              <CheckCircleIcon fontSize="inherit" />
+            </IconButton>
+          </Stack>
+        </Box>
       </div>
     );
   }
