@@ -1,7 +1,7 @@
 export const ROUTES = {
   DASHBOARD: "/",
   CALENDAR: "/calendar",
-  STUDY_CARDS: "/study-cards",
-  STUDY_CARD: "/study-cards/:studyCardId",
+  ALL_STUDY_CARDS: "/all-study-cards",
+  ONE_SETS_CARDS: "/sets-flashcards/:studyCardId",
   CREATE_STUDY_CARDS: "/create-study-card",
 };

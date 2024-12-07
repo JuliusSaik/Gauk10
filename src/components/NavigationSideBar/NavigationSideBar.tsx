@@ -24,7 +24,7 @@ const sideBarItems = [
     text: "Dashboard",
   },
   {
-    route: ROUTES.STUDY_CARDS,
+    route: ROUTES.ALL_STUDY_CARDS,
     icon: <StyleRoundedIcon fontSize="large" className="text-white" />,
     text: "Cards",
   },
@@ -45,7 +45,7 @@ const NavigationSideBar = () => {
         key="Icon"
         className="flex justify-center mb-12 mt-8"
       >
-        <img src="gauk10_logo.svg" alt="logo" />
+        <img src="/gauk10_logo.svg" alt="logo" />
       </Link>
 
       <Stack spacing={2} className="flex-col items-start">

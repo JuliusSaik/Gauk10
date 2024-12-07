@@ -12,7 +12,7 @@ const StudyCardSet: React.FC<FlashCardSet> = ({
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/study-cards/${id}`);
+    navigate(`/sets-flashcards/${id}`);
   };
 
   return (
