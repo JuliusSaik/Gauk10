@@ -120,7 +120,7 @@ const CalendarBlock = () => {
           return (
             <div
               key={day.toDateString()}
-              className={`relative h-28 w-full flex justify-center items-start rounded-lg shadow-md transition transform hover:scale-105 ${
+              className={`relative h-20 w-full flex justify-center items-start rounded-lg shadow-md transition transform hover:scale-105 ${
                 day.toDateString() === today.toDateString()
                   ? "bg-blue-600 text-white font-bold"
                   : "bg-gray-700 text-gray-200"

@@ -88,39 +88,41 @@ const StudyCardList: React.FC<StudyCardListProps> = ({ cards }) => {
     );
   } else {
     return (
-      <div className="card-one">
-        <Slider ref={slider} {...settings}>
-          {cards.map((card) => {
-            return (
-              <StudyCard
-                key={card.id}
-                question={card.question}
-                answer={card.answer}
-                id={card.id}
-              />
-            );
-          })}
-        </Slider>
-        <Box className="flex justify-center">
-          <Stack direction="row" spacing={15} marginTop={70} marginLeft={14}>
-            <IconButton
-              aria-label="cancel"
-              sx={{ fontSize: 50 }}
-              color="warning"
-              onClick={incorrect}
-            >
-              <CancelIcon fontSize="inherit" />
-            </IconButton>
-            <IconButton
-              aria-label="check"
-              sx={{ fontSize: 50 }}
-              color="success"
-              onClick={correct}
-            >
-              <CheckCircleIcon fontSize="inherit" />
-            </IconButton>
-          </Stack>
-        </Box>
+      <div className="-mt-10 mr-10">
+        <div className="card-one">
+          <Slider ref={slider} {...settings}>
+            {cards.map((card) => {
+              return (
+                <StudyCard
+                  key={card.id}
+                  question={card.question}
+                  answer={card.answer}
+                  id={card.id}
+                />
+              );
+            })}
+          </Slider>
+          <Box className="flex justify-center">
+            <Stack direction="row" spacing={15} marginTop={70} marginLeft={14}>
+              <IconButton
+                aria-label="cancel"
+                sx={{ fontSize: 50 }}
+                color="warning"
+                onClick={incorrect}
+              >
+                <CancelIcon fontSize="inherit" />
+              </IconButton>
+              <IconButton
+                aria-label="check"
+                sx={{ fontSize: 50 }}
+                color="success"
+                onClick={correct}
+              >
+                <CheckCircleIcon fontSize="inherit" />
+              </IconButton>
+            </Stack>
+          </Box>
+        </div>
       </div>
     );
   }

@@ -13,7 +13,7 @@ const TestCalendarPage = () => {
             <div className="w-full px-[2.5rem]">
               <Box className="flex justify-between items-center">
                 <Box>
-                  <h1 className="mt-10 mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl dark:text-white">
+                  <h1 className="mt-2 mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl dark:text-white">
                     Calendar{" "}
                     <span className="text-blue-600 dark:text-blue-500">
                       {" "}
