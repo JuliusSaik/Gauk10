@@ -29,14 +29,17 @@ const ReviewProgress = () => {
   }, []);
 
   return (
-    <Box sx={{ width: "100%" }} className="bg-gray-800 p-4 w-full rounded-lg">
-      <h1 className="text-2xl pr-32 pb-8">Review Progress</h1>
+    <Box
+      sx={{ width: "100%" }}
+      className="bg-gray-800 p-4 w-full rounded-lg min-h-screen"
+    >
+      <h1 className="text-3xl pr-32 pb-8">Review Progress</h1>
       <div>
         {cards.map((card: FlashCardSet) => {
           const daysLeft = calculateDaysLeft(card.date); // Use the helper function
           return (
             <div key={card.id} className="pb-8">
-              <h2 className="text-xl text-gray-300">{card.title}</h2>
+              <h2 className="text-lg text-gray-300">{card.title}</h2>
               <Typography variant="body2" className="text-xs text-gray-300">
                 {daysLeft > 0
                   ? `Nearest test is in: ${daysLeft} day${

@@ -100,7 +100,7 @@ const CreateStudyCardsPage = () => {
     <>
       <Box className="pb-6">
         <Box className="justify-between items-center flex mx-auto">
-          <h1 className="mt-10 mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+          <h1 className="mt-10 ml-20 mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
             <span className="text-white">Create {}</span>
             <span className="text-blue-600 dark:text-blue-500">
               flashcard set 📂
@@ -116,41 +116,42 @@ const CreateStudyCardsPage = () => {
       </Box>
       <Box className="w-full mx-auto p-2 place-items-center">
         <Box className="flex-col w-4/5 justify-center border-1 border-blue-300 items-center bg-gray-800 text-white p-8 rounded-lg shadow-lg">
-          <Box className="mt-2 flex-col space-y-12 text-white">
-            {/* Title Input */}
-            <TextField
-              sx={{
-                "& .MuiOutlinedInput-input": {
-                  color: "white",
-                },
-              }}
-              placeholder="Enter a title e.g: 'Programming - Chapter 22: Dynamic memory allocation'"
-              variant="outlined"
-              fullWidth
-              value={inputTitle}
-              onChange={(e) => setInputTitle(e.target.value)}
-              className="mb-8 bg-gray-700 rounded-md outline-none"
-            />
+          <p className="text-lg font-bold mb-2">Studycard Title:</p>
 
-            {/* Description Input */}
-            <TextField
-              sx={{
-                "& .MuiOutlinedInput-input": {
-                  color: "white",
-                },
-              }}
-              placeholder="Add a description..."
-              fullWidth
-              multiline
-              rows={4}
-              value={inputDescription}
-              onChange={(e) => setInputDescription(e.target.value)}
-              className="mb-8 bg-gray-700  rounded-md outline-none"
-            />
-          </Box>
-          <Box className="flex justify-between gap-4 mb-8 mt-8">
+          <TextField
+            sx={{
+              "& .MuiOutlinedInput-input": {
+                color: "white",
+              },
+            }}
+            placeholder="Enter a title e.g: 'Programming - Chapter 22: Dynamic memory allocation'"
+            variant="outlined"
+            fullWidth
+            value={inputTitle}
+            onChange={(e) => setInputTitle(e.target.value)}
+            className="mb-8 bg-gray-700 rounded-md outline-none"
+          />
+
+          <p className="text-lg font-bold mb-2 mt-8">Studycard Description:</p>
+
+          <TextField
+            sx={{
+              "& .MuiOutlinedInput-input": {
+                color: "white",
+              },
+            }}
+            placeholder="Add a description..."
+            fullWidth
+            multiline
+            rows={4}
+            value={inputDescription}
+            onChange={(e) => setInputDescription(e.target.value)}
+            className="mb-8 bg-gray-700  rounded-md outline-none"
+          />
+          <p className="text-lg font-bold mb-2 mt-8">Set Your Deadline:</p>
+          <Box className="flex justify-between items-center">
             <DatePicker
-              className="w-1/2"
+              className="w-full"
               defaultValue={dayjs()}
               sx={{
                 "& .MuiPickersToolbar-root": {
