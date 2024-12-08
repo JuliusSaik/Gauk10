@@ -1,6 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
+import { FlashCardSet } from "../../config/types";
+import { API_BASE_URL } from "../../config/constants";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "../../config/Router/routes";
 
 const CalendarBlock = () => {
   const today = new Date();
@@ -10,23 +14,21 @@ const CalendarBlock = () => {
   const [alertMessage, setAlertMessage] = useState<React.ReactNode>(""); // Use React.ReactNode here
   const [showAlert, setShowAlert] = useState(false); // To control the visibility of the alert
 
-  const events = [
-    {
-      date: new Date(2024, 11, 12),
-      title: "Kompiuterinė grafika",
-      description: "Kontrolinis",
-    },
-    {
-      date: new Date(2024, 11, 9),
-      title: "Procedūrinis Programavimas",
-      description: "Projektas",
-    },
-    {
-      date: new Date(2024, 11, 6),
-      title: "M. A. P.",
-      description: "Kontrolinis",
-    },
-  ];
+  const [cards, setCards] = useState<FlashCardSet[]>([]);
+
+  useEffect(() => {
+    const fetchAllSets = async () => {
+      try {
+        const response = await fetch(`${API_BASE_URL}/sets`);
+        const data = await response.json();
+        console.log("Fetch successful:", data);
+        setCards(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchAllSets();
+  }, []);
 
   const getDaysInMonth = (date: Date) => {
     const year = date.getFullYear();
@@ -50,14 +52,17 @@ const CalendarBlock = () => {
   };
 
   const getEventForDay = (day: Date) => {
-    return events.find(
-      (event) =>
-        event.date.getFullYear() === day.getFullYear() &&
-        event.date.getMonth() === day.getMonth() &&
-        event.date.getDate() === day.getDate()
-    );
+    return cards.find((card) => {
+      const parsedDate = new Date(card.date);
+      return (
+        parsedDate.getFullYear() === day.getFullYear() &&
+        parsedDate.getMonth() === day.getMonth() &&
+        parsedDate.getDate() === day.getDate()
+      );
+    });
   };
 
+  const navigate = useNavigate();
   const days = getDaysInMonth(currentDate);
   const firstDayIndex = days[0].getDay();
 
@@ -68,7 +73,10 @@ const CalendarBlock = () => {
         <div>
           <p className="text-xl font-semibold text-gray-800">{event.title}</p>
           <p className="mt-2 text-lg text-gray-600">{event.description}</p>
-          <button className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-500 transform transition-all duration-300 hover:scale-105">
+          <button
+            className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-500 transform transition-all duration-300 hover:scale-105"
+            onClick={() => navigate(`/sets-flashcards/${event.id}`)}
+          >
             Start Learning
           </button>
         </div>

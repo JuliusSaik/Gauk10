@@ -4,6 +4,11 @@ export interface QACard {
   answer: string;
 }
 
+export interface CreateQACard {
+  question: string;
+  answer: string;
+}
+
 export interface FlashCardSet {
   id: number;
   icon: number;
@@ -18,4 +23,5 @@ export interface CreateFlashCardSet {
   description: string;
   progress: number;
   date: string;
+  flashcards: CreateQACard[];
 }

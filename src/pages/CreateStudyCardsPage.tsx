@@ -4,7 +4,8 @@ import AddFlashCard from "../components/AddFlashCard/AddFlashCard";
 import { DatePicker } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
 import { API_BASE_URL } from "../config/constants";
-import { CreateFlashCardSet, QACard } from "../config/types";
+import { CreateFlashCardSet, CreateQACard, QACard } from "../config/types";
+import { useNavigate } from "react-router-dom";
 
 const firstCard: QACard = {
   id: 0,
@@ -25,6 +26,7 @@ const CreateStudyCardsPage = () => {
 
   const [createdCards, setCreatedCards] = useState<QACard[]>([firstCard]);
   const [creationId, setCreationId] = useState(0);
+  const [selectedDate, setSelectedDate] = useState(dayjs()); // Default to current date (Rafal)
 
   const onAdd = () => {
     const incrementId = creationId + 1;
@@ -59,16 +61,23 @@ const CreateStudyCardsPage = () => {
     }, 200);
   };
 
-  const [selectedDate, setSelectedDate] = useState(dayjs()); // Default to current date (Rafal)
+  const navigate = useNavigate();
 
   const onSubmitCards = async () => {
     try {
+      const filteredFlashcards: CreateQACard[] = createdCards.map((card) => ({
+        question: card.question,
+        answer: card.answer,
+      }));
+
       const createFlashCardSet: CreateFlashCardSet = {
         title: inputTitle,
         description: inputDescription,
         progress: 0,
-        date: "2024-11-10",
+        date: selectedDate.format("YYYY-MM-DD"),
+        flashcards: filteredFlashcards,
       };
+      console.log(createFlashCardSet);
 
       const response = await fetch(`${API_BASE_URL}/sets`, {
         method: "POST",
@@ -82,6 +91,8 @@ const CreateStudyCardsPage = () => {
       console.log("Post successful:", data);
     } catch (error) {
       console.log(error);
+    } finally {
+      navigate("/all-study-cards");
     }
   };
 

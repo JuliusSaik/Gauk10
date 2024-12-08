@@ -1,34 +1,8 @@
 import { Box, LinearProgress, Typography } from "@mui/material";
-import React from "react";
-import { cards } from "../../pages/mock/mockStudyCardSets";
+import React, { useEffect, useState } from "react";
 import { ClassNames } from "@emotion/react";
 import { FlashCardSet } from "../../config/types";
-
-const ReviewMaterial: React.FC<{ progress?: number }> = ({ progress = 0 }) => {
-  return (
-    <div>
-      <Box className="flex items-center space-x-4 mt-2">
-        <LinearProgress
-          variant="determinate"
-          value={progress}
-          sx={{
-            height: 25,
-            borderRadius: 5,
-            backgroundColor: "grey.800",
-            "& .MuiLinearProgress-bar": {
-              borderRadius: 5,
-              backgroundColor: "#8a2be2",
-            },
-          }}
-          className="w-full"
-        />
-        <Typography variant="body1" gutterBottom>
-          {progress}%
-        </Typography>
-      </Box>
-    </div>
-  );
-};
+import { API_BASE_URL } from "../../config/constants";
 
 const calculateDaysLeft = (targetDate: string): number => {
   const today = new Date();
@@ -38,6 +12,22 @@ const calculateDaysLeft = (targetDate: string): number => {
 };
 
 const ReviewProgress = () => {
+  const [cards, setCards] = useState<FlashCardSet[]>([]);
+
+  useEffect(() => {
+    const fetchAllSets = async () => {
+      try {
+        const response = await fetch(`${API_BASE_URL}/sets`);
+        const data = await response.json();
+        console.log("Fetch successful:", data);
+        setCards(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchAllSets();
+  }, []);
+
   return (
     <Box sx={{ width: "100%" }} className="bg-gray-800 p-4 w-full rounded-lg">
       <h1 className="text-2xl pr-32 pb-8">Review Progress</h1>
@@ -54,7 +44,25 @@ const ReviewProgress = () => {
                     }`
                   : "The day is here or has passed!"}
               </Typography>
-              <ReviewMaterial progress={card.progress} />
+              <Box className="flex items-center space-x-4 mt-2">
+                <LinearProgress
+                  variant="determinate"
+                  value={card.progress}
+                  sx={{
+                    height: 25,
+                    borderRadius: 5,
+                    backgroundColor: "grey.800",
+                    "& .MuiLinearProgress-bar": {
+                      borderRadius: 5,
+                      backgroundColor: "#8a2be2",
+                    },
+                  }}
+                  className="w-full"
+                />
+                <Typography variant="body1" gutterBottom>
+                  {card.progress}%
+                </Typography>
+              </Box>
             </div>
           );
         })}

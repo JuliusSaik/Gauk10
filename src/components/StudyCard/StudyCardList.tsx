@@ -13,12 +13,14 @@ import { useNavigate } from "react-router-dom";
 import { QACard } from "../../config/types";
 import { ROUTES } from "../../config/Router/routes";
 import { Box } from "@mui/material";
+import { API_BASE_URL } from "../../config/constants";
 
 interface StudyCardListProps {
   cards: QACard[];
+  setId: number;
 }
 
-const StudyCardList: React.FC<StudyCardListProps> = ({ cards }) => {
+const StudyCardList: React.FC<StudyCardListProps> = ({ cards, setId }) => {
   const settings = {
     dots: false,
     infinite: false,
@@ -48,7 +50,30 @@ const StudyCardList: React.FC<StudyCardListProps> = ({ cards }) => {
   const refreshPage = () => {
     window.location.reload();
   };
+
+  const onFinishCards = async () => {
+    try {
+      const progress = Math.round((CorrectCounter / Counter) * 100);
+
+      const response = await fetch(
+        `${API_BASE_URL}/sets/${setId}/progress/${progress}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = await response.json();
+      console.log("Post successful:", data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   if (Counter === cards.length) {
+    onFinishCards();
+
     return (
       <div className="flex flex-col items-center justify-center absolute inset-0">
         <div

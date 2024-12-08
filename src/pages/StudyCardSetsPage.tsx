@@ -1,12 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import StudyCardSet from "../components/StudyCardSet/StudyCardSet";
 import { cards } from "./mock/mockStudyCardSets";
 import { Box } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { FlashCardSet } from "../config/types";
+import { API_BASE_URL } from "../config/constants";
 
 const StudyCardSetsPage = () => {
   const navigate = useNavigate();
+
+  const [sets, setSets] = useState<FlashCardSet[]>([]);
+
+  useEffect(() => {
+    const fetchAllSets = async () => {
+      try {
+        const response = await fetch(`${API_BASE_URL}/sets`);
+        const data = await response.json();
+        console.log("Fetch successful:", data);
+        setSets(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchAllSets();
+  }, []);
 
   return (
     <>
@@ -31,15 +48,15 @@ const StudyCardSetsPage = () => {
             </Box>
 
             <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 w-full">
-              {cards.map((card: FlashCardSet) => (
+              {sets.map((set: FlashCardSet) => (
                 <StudyCardSet
-                  key={card.id}
-                  title={card.title}
-                  description={card.description}
-                  date={card.date}
-                  id={card.id}
-                  icon={card.icon}
-                  progress={card.progress}
+                  key={set.id}
+                  title={set.title}
+                  description={set.description}
+                  date={set.date}
+                  id={set.id}
+                  icon={set.id}
+                  progress={set.progress}
                 />
               ))}
             </div>
